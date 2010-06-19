@@ -1,7 +1,7 @@
 rails_env = ENV['RAILS_ENV'] || "production"
-rails_root = ENV['RAILS_ROOT'] || "/var/sites/admin/estormcrm"
+rails_root = ENV['RAILS_ROOT'] || "/var/sites/crmtools.estormtech.com/crmtools"
 num_workers = rails_env == 'production' ? 2 : 1
-group = "estorm"
+group = "crmtools"
 puts "env: #{rails_env} root: #{rails_root}"
 
 num_workers.times do |num|
@@ -10,7 +10,7 @@ num_workers.times do |num|
     w.group = "resque_${group}"
     w.interval = 30.seconds
     w.dir = rails_root
-    w.env = {"QUEUE"=>"crm", "RAILS_ENV"=>rails_env}
+    w.env = {"QUEUE"=>"mimi_status", "RAILS_ENV"=>rails_env}
     w.start = "/usr/bin/rake  environment resque:work"
 
     w.uid = 'www-data'
