@@ -1,0 +1,14 @@
+== Simple application for deployment resque web
+ Based on defunkt version.  Will insert the link later
+
+== Passenger
+  FOr deployment on passenger
+
+== Standalong
+	rackup config.ru
+
+== Problems.
+ 
+Original example had two url maps but this does not seem to work with my passenger version.
+
+
