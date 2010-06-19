@@ -1,5 +1,5 @@
 == Simple application for deployment resque web
- Based on defunkt version.  Will insert the link later
+ Based on defunkt version.  http://github.com/defunkt/resque#readme
 
 == Passenger
   FOr deployment on passenger
