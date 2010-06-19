@@ -1,14 +1,16 @@
 rails_env = ENV['RAILS_ENV'] || "production"
 rails_root = ENV['RAILS_ROOT'] || "/var/sites/admin/estormcrm"
 num_workers = rails_env == 'production' ? 2 : 1
+puts "env: #{rails_env} root: #{rails_root}"
 
 num_workers.times do |num|
   God.watch do |w|
     w.name = "resque-#{num}"
-    w.group = 'resque'
+    w.group = 'resque_estorm'
     w.interval = 30.seconds
+    w.dir = rails_root
     w.env = {"QUEUE"=>"crm", "RAILS_ENV"=>rails_env}
-    w.start = "/usr/bin/rake -f #{rails_root}/Rakefile environment resque:work"
+    w.start = "/usr/bin/rake  environment resque:work"
 
     w.uid = 'www-data'
     w.gid = 'www-data'
