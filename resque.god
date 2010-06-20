@@ -10,7 +10,7 @@ num_workers = rails_env == 'production' ? 2 : 1
 
 
 resque_groups.each { |grp| 
-  puts "starting  #{grp[:group]} queue: #{grp[:queues]} root:  #{grp[:root]}"
+  puts "starting  #{grp[:group]} queue: #{grp[:queues]} root:  #{grp[:rails_root]}"
 num_workers.times do |num|
   God.watch do |w|
     w.name = "resque_#{grp[:group]}-#{num}"
