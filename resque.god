@@ -9,7 +9,7 @@ resque_groups[:estorm]={:group => "estorm",:queues =>"crm",:rails_root =>  ENV['
 num_workers = rails_env == 'production' ? 2 : 1
 
 
-resque_groups.each { |grp| 
+resque_groups.each { |key,grp| 
   puts "starting  #{grp[:group]} queue: #{grp[:queues]} root:  #{grp[:rails_root]}"
 num_workers.times do |num|
   God.watch do |w|
