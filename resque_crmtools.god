@@ -10,7 +10,7 @@ num_workers.times do |num|
     w.group = "resque_${group}"
     w.interval = 30.seconds
     w.dir = rails_root
-    w.env = {"QUEUE"=>"mimi_status", "RAILS_ENV"=>rails_env}
+    w.env = {"QUEUE"=>"mimi_status,promotion,acquisition", "RAILS_ENV"=>rails_env}
     w.start = "/usr/bin/rake  environment resque:work"
 
     w.uid = 'www-data'
