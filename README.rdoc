@@ -2,6 +2,7 @@
  Based on defunkt version.  http://github.com/defunkt/resque#readme
 
 == God monitoring
+sudo god -c resque.god
 sudo god -c resque_estorm.god 
 sudo god -c resque_crmtools.god 
 
