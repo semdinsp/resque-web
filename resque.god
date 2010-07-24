@@ -1,13 +1,16 @@
 #combined file
 
 rails_env = ENV['RAILS_ENV'] || "production"
-num_workers = rails_env == 'production' ? 2 : 1
-resque_groups ={:crmtools=> {},:estorm => {},:anmum => {}}
+#num_workers = rails_env == 'production' ? 2 : 1
+num_workers = rails_env == 'production' ? 1 : 1
+resque_groups ={:crmtools=> {},:estorm => {},:anmum => {},:etpi={},:trimedia={}}
 resque_groups[:crmtools]={:group => "crmtools",:queues =>"crmtools_mimi_status,crmtools_acquisition,crmtools_promotion",:rails_root => ENV['RAILS_ROOT'] || "/var/sites/crmtools.estormtech.com/crmtools"}
 resque_groups[:anmum]={:group => "anmum",:queues =>"anmum_mimi_status,anmum_acquisition,anmum_promotion",:rails_root => ENV['RAILS_ROOT'] || "/var/sites/crmtools.estormtech.com/anmum"}
-resque_groups[:estorm]={:group => "estorm",:queues =>"crm,dms",:rails_root =>  ENV['RAILS_ROOT'] || "/var/sites/admin/estormcrm"}
+resque_groups[:estorm]={:group => "estorm",:queues =>"estormcrm_crm,estormcrm_dms",:rails_root =>  ENV['RAILS_ROOT'] || "/var/sites/admin/estormcrm"}
+resque_groups[:trimedia]={:group => "trimedia",:queues =>"trimedia_crm,trimedia_dms",:rails_root =>  ENV['RAILS_ROOT'] || "/var/sites/admin/trimedia"}
+resque_groups[:etpi]={:group => "epti",:queues =>"etpi_crm,etpi_dms",:rails_root =>  ENV['RAILS_ROOT'] || "/var/sites/admin/etpi"}
 
-num_workers = rails_env == 'production' ? 2 : 1
+
 
 
 resque_groups.each { |key,grp| 
