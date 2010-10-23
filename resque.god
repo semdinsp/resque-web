@@ -3,7 +3,7 @@
 rails_env = ENV['RAILS_ENV'] || "production"
 #num_workers = rails_env == 'production' ? 2 : 1
 num_workers = rails_env == 'production' ? 1 : 1
-resque_groups ={:crmtools=> {},:estorm => {},:anmum => {},:etpi => {},:trimedia => {}, :collin => {}, :estorm2}
+resque_groups ={:crmtools=> {},:estorm => {},:anmum => {},:etpi => {},:trimedia => {}, :collin => {}, :estorm2 => {}}
 resque_groups[:crmtools]={:group => "crmtools",:queues =>"crmtools_mimi_status,crmtools_acquisition,crmtools_promotion",:rails_root => ENV['RAILS_ROOT'] || "/var/sites/crmtools.estormtech.com/crmtools"}
 resque_groups[:collin]={:group => "collin",:queues =>"collin_mimi_status,collin_acquisition,collin_promotion",:rails_root => ENV['RAILS_ROOT'] || "/var/sites/crmtools.estormtech.com/collin"}
 resque_groups[:estorm2]={:group => "estorm2",:queues =>"estorm2_mimi_status,estorm2_acquisition,estorm2_promotion",:rails_root => ENV['RAILS_ROOT'] || "/var/sites/crmtools.estormtech.com/estorm"}
