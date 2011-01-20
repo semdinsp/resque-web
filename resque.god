@@ -4,20 +4,20 @@ rails_env = ENV['RAILS_ENV'] || "production"
 #num_workers = rails_env == 'production' ? 2 : 1
 num_workers = rails_env == 'production' ? 1 : 1
 resque_groups ={:crmtools=> {},:estorm => {},:anmum => {},:etpi => {},:trimedia => {}, :collin => {}, :estorm2 => {}}
-resque_groups[:crmtools]={:group => "crmtools",:queues =>"crmtools_mimi_status,crmtools_acquisition,crmtools_promotion,crmtools_automata",:rails_root => ENV['RAILS_ROOT'] || "/var/sites/crmtools.estormtech.com/crmtools"}
-resque_groups[:collin]={:group => "collin",:queues =>"collin_mimi_status,collin_acquisition,collin_promotion",:rails_root => ENV['RAILS_ROOT'] || "/var/sites/crmtools.estormtech.com/collin"}
-resque_groups[:estorm2]={:group => "estorm2",:queues =>"estorm2_mimi_status,estorm2_acquisition,estorm2_promotion,estorm2_crmtools",:rails_root => ENV['RAILS_ROOT'] || "/var/sites/crmtools.estormtech.com/estorm"}
-resque_groups[:anmum]={:group => "anmum",:queues =>"anmum_mimi_status,anmum_acquisition,anmum_promotion",:rails_root => ENV['RAILS_ROOT'] || "/var/sites/crmtools.estormtech.com/anmum"}
-resque_groups[:estorm]={:group => "estorm",:queues =>"estormcrm_crm,estormcrm_dms",:rails_root =>  ENV['RAILS_ROOT'] || "/var/sites/admin/estormcrm"}
-resque_groups[:trimedia]={:group => "trimedia",:queues =>"trimedia_crm,trimedia_dms",:rails_root =>  ENV['RAILS_ROOT'] || "/var/sites/admin/trimedia"}
-resque_groups[:etpi]={:group => "epti",:queues =>"etpi_crm,etpi_dms",:rails_root =>  ENV['RAILS_ROOT'] || "/var/sites/admin/etpi"}
+resque_groups[:crmtools]={:group => "crmtools",:queues =>"crmtools_mimi_status,crmtools_acquisition,crmtools_promotion,crmtools_automata",:rails_root => ENV['RAILS_ROOT'] || "/var/sites/crmtools.estormtech.com/crmtools", :num_workers => 3}
+resque_groups[:collin]={:group => "collin",:queues =>"collin_mimi_status,collin_acquisition,collin_promotion",:rails_root => ENV['RAILS_ROOT'] || "/var/sites/crmtools.estormtech.com/collin", :num_workers => 1}
+resque_groups[:estorm2]={:group => "estorm2",:queues =>"estorm2_mimi_status,estorm2_acquisition,estorm2_promotion,estorm2_crmtools",:rails_root => ENV['RAILS_ROOT'] || "/var/sites/crmtools.estormtech.com/estorm", :num_workers => 1}
+resque_groups[:anmum]={:group => "anmum",:queues =>"anmum_mimi_status,anmum_acquisition,anmum_promotion",:rails_root => ENV['RAILS_ROOT'] || "/var/sites/crmtools.estormtech.com/anmum",:num_workers => 1}
+resque_groups[:estorm]={:group => "estorm",:queues =>"estormcrm_crm,estormcrm_dms",:rails_root =>  ENV['RAILS_ROOT'] || "/var/sites/admin/estormcrm", :num_workers => 1}
+resque_groups[:trimedia]={:group => "trimedia",:queues =>"trimedia_crm,trimedia_dms",:rails_root =>  ENV['RAILS_ROOT'] || "/var/sites/admin/trimedia", :num_workers => 1}
+resque_groups[:etpi]={:group => "epti",:queues =>"etpi_crm,etpi_dms",:rails_root =>  ENV['RAILS_ROOT'] || "/var/sites/admin/etpi",:num_workers => 1}
 
 
 
 
 resque_groups.each { |key,grp| 
   puts "starting  #{grp[:group]} queue: #{grp[:queues]} root:  #{grp[:rails_root]}"
-num_workers.times do |num|
+grp[:num_workers].times do |num|
   God.watch do |w|
     w.name = "resque_#{grp[:group]}-#{num}"
     w.group = "resque_#{grp[:group]}"
