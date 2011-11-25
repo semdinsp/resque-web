@@ -22,7 +22,7 @@ grp[:num_workers].times do |num|
     w.name = "resque_#{grp[:group]}-#{num}"
     w.group = "resque_#{grp[:group]}"
     w.interval = 30.seconds
-     w.log = '/var/log/apache2/god.log'
+     w.log = "/var/log/apache2/#{w.name}.log"
     w.dir = grp[:rails_root]
     w.env = {"QUEUE"=>grp[:queues], "RAILS_ENV"=>rails_env}
     w.start = "/usr/bin/rake  environment resque:work"
