@@ -1,11 +1,10 @@
-#combined file
+combined file
 
 rails_env = ENV['RAILS_ENV'] || "production"
 #num_workers = rails_env == 'production' ? 2 : 1
 num_workers = rails_env == 'production' ? 1 : 1
-resque_groups ={:crmtools=> {}, :estorm => {}}
-resque_groups[:crmtools]={:group => "crmtools",:queues =>"crmtools_mimi_status,crmtools_acquisition,crmtools_promotion,crmtools_automata",:rails_root => ENV['RAILS_ROOT'] || "/var/sites/crmtools.estormtech.com/crmtools", :num_workers => 9}
-resque_groups[:estorm]={:group => "estorm",:queues =>"estormcrm_crm,estormcrm_dms",:rails_root =>  ENV['RAILS_ROOT'] || "/var/sites/admin/estormcrm", :num_workers => 1}
+resque_groups ={ :estorm => {}}
+resque_groups[:estorm]={:group => "estorm",:queues =>"indosat_crm,indosat_dms",:rails_root =>  ENV['RAILS_ROOT'] || "/var/sites/admin/indosat", :num_workers => 2}
 
 
 
@@ -19,7 +18,7 @@ grp[:num_workers].times do |num|
     w.interval = 30.seconds
     w.dir = grp[:rails_root]
     w.env = {"QUEUE"=>grp[:queues], "RAILS_ENV"=>rails_env}
-    w.log = "/var/sites/godlog/#{grp[:group]}-#{num}.log"
+     w.log = "/var/sites/godlog/#{grp[:group]}-#{num}.log"
     w.start = "/usr/bin/rake  environment resque:work"
 
     w.uid = 'www-data' if rails_env=='production'
