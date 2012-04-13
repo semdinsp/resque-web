@@ -1,4 +1,4 @@
-combined file
+#combined file
 
 rails_env = ENV['RAILS_ENV'] || "production"
 #num_workers = rails_env == 'production' ? 2 : 1
