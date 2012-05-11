@@ -25,7 +25,7 @@ grp[:num_workers].times do |num|
     w.log = "/var/sites/godlog/#{grp[:group]}-#{num}.log"
     w.dir = grp[:rails_root]
     w.env = {"QUEUE"=>grp[:queues], "RAILS_ENV"=>rails_env}
-    w.start = "/usr/bin/rake  environment resque:work"
+    w.start = "/var/lib/gems/1.8/bin/rake  environment resque:work"
 
     w.uid = 'www-data' if rails_env=='production'
     w.gid = 'www-data' if rails_env=='production'
