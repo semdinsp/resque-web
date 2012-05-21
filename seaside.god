@@ -11,8 +11,8 @@ SEASIDE_GROUPS.each { |key,grp|
 #	VM="/usr/bin/CogVM"
 #	VM_PARAMS="-mmap 256m -vm-sound-null -vm-display-null"
 #	IMAGE="sesbase.image"
-    w.uid = 'www-data' 
-    w.gid = 'www-data'
+#    w.uid = 'www-data' 
+#    w.gid = 'www-data'
 
     # retart if memory gets too high
     w.transition(:up, :restart) do |on|
