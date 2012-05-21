@@ -12,7 +12,7 @@ resque_groups[:estorm]={:group => "estorm",:queues =>"estormcrm_crm,estormcrm_dm
 #resque_groups[:trimedia]={:group => "trimedia",:queues =>"trimedia_crm,trimedia_dms",:rails_root =>  ENV['RAILS_ROOT'] || "/var/sites/admin/trimedia", :num_workers => 1}
 # resque_groups[:etpi]={:group => "epti",:queues =>"etpi_crm,etpi_dms",:rails_root =>  ENV['RAILS_ROOT'] || "/var/sites/admin/etpi",:num_workers => 1}
 
-
+God.load "/var/sites/admin/resqueweb/contacts.god"
 
 
 resque_groups.each { |key,grp| 

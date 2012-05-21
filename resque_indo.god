@@ -6,7 +6,7 @@ num_workers = rails_env == 'production' ? 1 : 1
 resque_groups ={ :estorm => {}}
 resque_groups[:estorm]={:group => "estorm",:queues =>"indosat_crm,indosat_dms",:rails_root =>  ENV['RAILS_ROOT'] || "/var/sites/admin/indosat", :num_workers => 2}
 
-
+God.load "/var/sites/admin/resqueweb/contacts.god"
 
 
 resque_groups.each { |key,grp| 
@@ -59,6 +59,9 @@ grp[:num_workers].times do |num|
       on.condition(:process_running) do |c|
         c.running = false
       end
+      on.condition(:process_exits) do |c|
+	    c.notify = 'scott'
+	  end
     end
   end
 end
