@@ -24,8 +24,8 @@ SEASIDE_GROUPS.each { |key,grp|
       end
        on.condition(:cpu_usage) do |c|
 	        c.interval = 10
-	        c.above = 50.percent
-	        c.times = 10
+	        c.above = 40.percent
+	        c.times = 8
 	      end
        grp[:ports].each { |port| 
 	      on.condition(:http_response_code) do |c|
@@ -33,7 +33,7 @@ SEASIDE_GROUPS.each { |key,grp|
 	        c.port =  port
 	        c.path = '/ficonabemail'
 	        c.code_is = 400
-	        c.timeout = 20.seconds
+	        c.timeout = 15.seconds
 	        c.times = [3, 5]
 	      end
 	     }

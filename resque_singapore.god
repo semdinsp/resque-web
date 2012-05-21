@@ -13,8 +13,9 @@ RESQUE_GROUPS[:estorm]={:group => "estorm",:queues =>"estormcrm_crm,estormcrm_dm
 God.load "contacts.god"
 God.load "redis.god"
 #:seaside2 => {}, :seaside3 => {}
-SEASIDE_GROUPS ={:seaside1=> {} }
+SEASIDE_GROUPS ={:seaside1=> {},:seaside2=>{} }
 SEASIDE_GROUPS[:seaside1]={:group => "seaside1",:seaside_root =>  "/var/sites/ses.sg.estormtech.com/", :ports => [8083,8084], :image => "sesbase.image"}
+SEASIDE_GROUPS[:seaside2]={:group => "seaside2",:seaside_root =>  "/var/sites/ses2.sg.estormtech.com/", :ports => [8088,8089,8090], :image => "ses2base.image"}
 God.load "seaside.god"
 
 
