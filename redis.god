@@ -10,8 +10,8 @@ grp[:num_workers].times do |num|
     w.log = "/var/sites/godlog/#{grp[:group]}-#{num}.log"
     w.start = "/usr/bin/rake  environment resque:work"
 
-    w.uid = 'www-data' if rails_env=='production'
-    w.gid = 'www-data' if rails_env=='production'
+    w.uid = 'www-data' if RAILS_ENV_GLOBAL=='production'
+    w.gid = 'www-data' if RAILS_ENV_GLOBAL=='production'
 
     # retart if memory gets too high
     w.transition(:up, :restart) do |on|
