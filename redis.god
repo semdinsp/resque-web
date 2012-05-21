@@ -1,4 +1,4 @@
-resque_groups.each { |key,grp| 
+RESQUE_GROUPS.each { |key,grp| 
   puts "starting  #{grp[:group]} queue: #{grp[:queues]} root:  #{grp[:rails_root]}"
 grp[:num_workers].times do |num|
   God.watch do |w|
