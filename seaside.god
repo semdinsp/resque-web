@@ -3,7 +3,7 @@ SEASIDE_GROUPS.each { |key,grp|
 
   God.watch do |w|
     w.name = "#{grp[:group]}"
-    w.group = "#{grp[:group]}"
+    w.group = "seaside"
     w.interval = 30.seconds
     w.dir = grp[:seaside_root]
     w.log = "/var/sites/godlog/#{grp[:group]}.log"
