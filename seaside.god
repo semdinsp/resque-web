@@ -28,6 +28,7 @@ SEASIDE_GROUPS.each { |key,grp|
 	        c.times = 8
 	      end
        grp[:ports].each { |port| 
+          puts "http checking: #{port} on #{grp[:group]} "
 	      on.condition(:http_response_code) do |c|
 	        c.host = 'localhost'
 	        c.port =  port
