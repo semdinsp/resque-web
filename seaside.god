@@ -1,5 +1,5 @@
 SEASIDE_GROUPS.each { |key,grp| 
-  puts "starting  #{grp[:group]}  root:  #{grp[:seaside_root] ports: #{grp[:ports]} image: #{grp[:image]} }"
+  puts "starting  #{grp[:group]}  root:  #{grp[:seaside_root]} ports: #{grp[:ports].join(',')} image: #{grp[:image]} }"
 
   God.watch do |w|
     w.name = "#{grp[:group]}"
