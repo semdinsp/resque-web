@@ -51,6 +51,9 @@ num_workers.times do |num|
       on.condition(:process_running) do |c|
         c.running = false
       end
+      on.condition(:process_exits) do |c|
+	    c.notify = 'scott'
+	  end
     end
   end
 end

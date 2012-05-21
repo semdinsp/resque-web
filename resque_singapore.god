@@ -9,7 +9,7 @@ resque_groups[:paulaner]={:group => "paulaner",:queues =>"paulaner_mimi_status,p
 resque_groups[:estorm]={:group => "estorm",:queues =>"estormcrm_crm,estormcrm_dms",:rails_root =>  ENV['RAILS_ROOT'] || "/var/sites/admin/estormcrm", :num_workers => 1}
 
 
-
+God.load "/var/sites/admin/resqueweb/contacts.god"
 
 resque_groups.each { |key,grp| 
   puts "starting  #{grp[:group]} queue: #{grp[:queues]} root:  #{grp[:rails_root]}"
@@ -61,6 +61,9 @@ grp[:num_workers].times do |num|
       on.condition(:process_running) do |c|
         c.running = false
       end
+	 on.condition(:process_exits) do |c|
+	    c.notify = 'scott'
+	  end
     end
   end
 end
