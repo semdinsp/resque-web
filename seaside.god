@@ -13,6 +13,8 @@ SEASIDE_GROUPS.each { |key,grp|
 #	IMAGE="sesbase.image"
 #    w.uid = 'www-data' 
 #    w.gid = 'www-data'
+ w.uid = 'root' 
+#    w.gid = 'www-data'
 
     # retart if memory gets too high
     w.transition(:up, :restart) do |on|
@@ -25,15 +27,16 @@ SEASIDE_GROUPS.each { |key,grp|
 	        c.above = 50.percent
 	        c.times = 10
 	      end
-
+       grp[:ports].each { |port| 
 	      on.condition(:http_response_code) do |c|
 	        c.host = 'localhost'
-	        c.port = "#{grp[:ports][0]}"
+	        c.port =  port
 	        c.path = '/ficonabemail'
 	        c.code_is = 400
-	        c.timeout = 10.seconds
+	        c.timeout = 20.seconds
 	        c.times = [3, 5]
 	      end
+	     }
     end
 
     # determine the state on startup
