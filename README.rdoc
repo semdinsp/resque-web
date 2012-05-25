@@ -9,6 +9,9 @@ sudo god -c resque_crmtools.god
 == testing 
 RAILS_ROOT=../crmtools RAILS_ENV=development god -c resque.god -D
 
+== Smalltalk/Pharo
+See the seaside god file which monitors seaside images and restarts them.
+
 == Passenger
   FOr deployment on passenger
 

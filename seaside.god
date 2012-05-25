@@ -1,3 +1,6 @@
+#SMALLTALK Seaside MONITORING via God
+
+
 SEASIDE_GROUPS.each { |key,grp| 
   puts "starting  #{grp[:group]}  root:  #{grp[:seaside_root]} ports: #{grp[:ports].join(',')} image: #{grp[:image]} }"
 
@@ -34,7 +37,8 @@ SEASIDE_GROUPS.each { |key,grp|
 	        c.port =  port
 	        c.path = '/ficonabemail'
 	        c.code_is = 400
-	        c.timeout = 15.seconds
+	#		c.interval = 30
+	        c.timeout = 7.seconds
 	        c.times = [3, 5]
 	      end
 	     }
