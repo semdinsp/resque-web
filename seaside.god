@@ -40,7 +40,7 @@ SEASIDE_GROUPS.each { |key,grp|
 	        c.port =  port
 	        c.path = '/ficonabemail'
 	        c.code_is = retcode
-	        lasttest = "http: returncode check[#{retcode}]"
+	        lasttest = "http #{port}: returncode check[#{retcode}]"
 	#		c.interval = 30
 	        c.timeout = 7.seconds
 	        c.times = [3, 6]
@@ -78,7 +78,7 @@ SEASIDE_GROUPS.each { |key,grp|
         c.running = false
       end
 	 on.condition(:process_exits) do |c|
-	    c.notify = {:contacts => ['scott'], :priority => 1, :category => lasttest}
+	    c.notify = {:contacts => ['scott'], :priority => 1, :category => "last test string: #{lasttest}"}
 	  end
     end
   end
