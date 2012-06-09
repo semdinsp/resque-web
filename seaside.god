@@ -30,18 +30,21 @@ SEASIDE_GROUPS.each { |key,grp|
 	        c.above = 40.percent
 	        c.times = 8
 	      end
-       grp[:ports].each { |port| 
-          puts "http checking: #{port} on #{grp[:group]} "
+        [400,500].each {|  retcode | 
+          grp[:ports].each { |port| 
+          puts "http checking: #{port} on #{grp[:group]} for return code #{retcode}"
 	      on.condition(:http_response_code) do |c|
 	        c.host = 'localhost'
 	        c.port =  port
 	        c.path = '/ficonabemail'
-	        c.code_is = 400
+	        c.code_is = retcode
 	#		c.interval = 30
 	        c.timeout = 7.seconds
-	        c.times = [3, 5]
+	        c.times = [3, 6]
 	      end
+	      }
 	     }
+		 
     end
 
     # determine the state on startup
