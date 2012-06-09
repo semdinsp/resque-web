@@ -18,17 +18,19 @@ SEASIDE_GROUPS.each { |key,grp|
 #    w.gid = 'www-data'
  w.uid = 'root' 
 #    w.gid = 'www-data'
-
+    lasttest="start"
     # retart if memory gets too high
     w.transition(:up, :restart) do |on|
       on.condition(:memory_usage) do |c|
         c.above = 350.megabytes
+        lasttest = "memory usage"
         c.times = 2
       end
        on.condition(:cpu_usage) do |c|
 	        c.interval = 10
 	        c.above = 40.percent
 	        c.times = 8
+	        lasttest = "cpu usage"
 	      end
         [400,500].each {|  retcode | 
           grp[:ports].each { |port| 
@@ -38,6 +40,7 @@ SEASIDE_GROUPS.each { |key,grp|
 	        c.port =  port
 	        c.path = '/ficonabemail'
 	        c.code_is = retcode
+	        lasttest = "http: returncode check[#{retcode}]"
 	#		c.interval = 30
 	        c.timeout = 7.seconds
 	        c.times = [3, 6]
@@ -75,7 +78,7 @@ SEASIDE_GROUPS.each { |key,grp|
         c.running = false
       end
 	 on.condition(:process_exits) do |c|
-	    c.notify = 'scott'
+	    c.notify = {:contacts => ['scott'], :priority => 1, :category => lasttest}
 	  end
     end
   end
