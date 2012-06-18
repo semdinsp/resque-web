@@ -32,7 +32,7 @@ SEASIDE_GROUPS.each { |key,grp|
 	        c.times = 8
 	        lasttest = "cpu usage"
 	      end
-        [400,500].each {|  retcode | 
+        [400,500,'Refused].each {|  retcode | 
           grp[:ports].each { |port| 
           puts "http checking: #{port} on #{grp[:group]} for return code #{retcode}"
 	      on.condition(:http_response_code) do |c|
