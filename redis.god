@@ -16,11 +16,17 @@ grp[:num_workers].times do |num|
     # retart if memory gets too high
     w.transition(:up, :restart) do |on|
       on.condition(:memory_usage) do |c|
-        c.above = 350.megabytes
-        c.times = 2
+        c.above = 300.megabytes
+        c.times = 3
       end
+       on.condition(:cpu_usage) do |c|
+	        c.interval = 10
+	        c.above = 40.percent
+	        c.times = 5
+	        lasttest = "cpu usage"
+	      end
     end
-
+     
     # determine the state on startup
     w.transition(:init, { true => :up, false => :start }) do |on|
       on.condition(:process_running) do |c|

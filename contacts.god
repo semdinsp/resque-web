@@ -1,6 +1,6 @@
 God::Contacts::Email.defaults do |d|
   d.from_email = 'support@estormtech.com'
-  d.from_name = 'God Notificaition'
+  d.from_name = '[God Notification]'
   d.delivery_method = :sendmail
 end
 

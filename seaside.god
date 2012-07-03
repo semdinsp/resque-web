@@ -29,7 +29,7 @@ SEASIDE_GROUPS.each { |key,grp|
        on.condition(:cpu_usage) do |c|
 	        c.interval = 10
 	        c.above = 40.percent
-	        c.times = 8
+	        c.times = 6
 	        lasttest = "cpu usage"
 	      end
         [400,500,'Refused'].each {|  retcode | 
