@@ -9,7 +9,7 @@ RESQUE_GROUPS[:crmtools]={:group => "crmtools",:queues =>"crmtools_mimi_status,c
 RESQUE_GROUPS[:paulaner]={:group => "paulaner",:queues =>"paulaner_mimi_status,paulaner_acquisition,paulaner_promotion,paulaner_automata",:rails_root => ENV['RAILS_ROOT'] || "/var/sites/crmtools.estormtech.com/paulaner", :num_workers => 4}
 RESQUE_GROUPS[:estorm]={:group => "estorm",:queues =>"estormcrm_crm,estormcrm_dms",:rails_root =>  ENV['RAILS_ROOT'] || "/var/sites/admin/estormcrm", :num_workers => 1}
 RESQUE_GROUPS[:tmstest]={:group => "tmstest",:queues =>"tmstest_import",:rails_root =>  ENV['RAILS_ROOT'] || "/var/sites/tms/tmstest", :num_workers => 1}
-#RESQUE_GROUPS[:tmslaos]={:group => "tmslaos",:queues =>"tms_import",:rails_root =>  ENV['RAILS_ROOT'] || "/var/sites/tms/tms", :num_workers => 1}
+RESQUE_GROUPS[:tmslaos]={:group => "tmslaos",:queues =>"tms_import",:rails_root =>  ENV['RAILS_ROOT'] || "/var/sites/tms/tms", :num_workers => 1}
 
 
 God.load "contacts.god"
