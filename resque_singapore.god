@@ -10,7 +10,7 @@ RESQUE_GROUPS[:paulaner]={:group => "paulaner",:queues =>"paulaner_mimi_status,p
 RESQUE_GROUPS[:estorm]={:group => "estorm",:queues =>"estormcrm_crm,estormcrm_dms",:rails_root =>  ENV['RAILS_ROOT'] || "/var/sites/admin/estormcrm", :num_workers => 1}
 RESQUE_GROUPS[:tmstest]={:group => "tmstest",:queues =>"tmstest_import",:rails_root =>  ENV['RAILS_ROOT'] || "/var/sites/tms/tmstest", :num_workers => 1}
 RESQUE_GROUPS[:tmslaos]={:group => "tmslaos",:queues =>"tms_import",:rails_root =>  ENV['RAILS_ROOT'] || "/var/sites/tms/tms", :num_workers => 1}
-RESQUE_GROUPS[:tmscc]={:group => "tmscc",:queues =>"tms_import",:rails_root =>  ENV['RAILS_ROOT'] || "/var/sites/tms/tmscc", :num_workers => 1}
+RESQUE_GROUPS[:tmscc]={:group => "tmscc",:queues =>"tmscc_import",:rails_root =>  ENV['RAILS_ROOT'] || "/var/sites/tms/tmscc", :num_workers => 1}
 
 
 God.load "contacts.god"
