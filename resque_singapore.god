@@ -1,4 +1,6 @@
 #combined file
+# running worker manually: 
+# RAILS_ENV=production QUEUES="bisa_mimi_status,bisa_acquisition,bisa_promotion,bisa_automata" rake environment resque:work
 
 RAILS_ENV_GLOBAL = ENV['RAILS_ENV'] || "production"
 RAKE_PATH = "/usr/bin/rake"
@@ -6,8 +8,8 @@ RAKE_PATH = "/usr/bin/rake"
 #num_workers = rails_env == 'production' ? 1 : 1
 RESQUE_GROUPS ={:crmtools=> {}, :estorm => {}, :paulaner => {},  :tmstest => {}, :tmscc => {}, :bisa => {}}
 RESQUE_GROUPS[:crmtools]={:group => "crmtools",:queues =>"crmtools_mimi_status,crmtools_acquisition,crmtools_promotion,crmtools_automata",:rails_root =>  "/var/sites/crmtools.estormtech.com/crmtools", :num_workers => 1}
-RESQUE_GROUPS[:paulaner]={:group => "paulaner",:queues =>"paulaner_mimi_status,paulaner_acquisition,paulaner_promotion,paulaner_automata",:rails_root =>  "/var/sites/crmtools.estormtech.com/paulaner", :num_workers => 4}
-RESQUE_GROUPS[:bisa]={:group => "bisa",:queues =>"bisa_mimi_status,bisa_acquisition,bisa_promotion,bisa_automata",:rails_root =>  "/var/sites/crmtools.estormtech.com/bisa", :num_workers => 2}
+RESQUE_GROUPS[:paulaner]={:group => "paulaner",:queues =>"paulaner_mimi_status,paulaner_acquisition,paulaner_promotion,paulaner_automata",:rails_root =>  "/var/sites/crmtools.estormtech.com/paulaner", :num_workers => 1}
+RESQUE_GROUPS[:bisa]={:group => "bisa",:queues =>"bisa_mimi_status,bisa_acquisition,bisa_promotion,bisa_automata",:rails_root =>  "/var/sites/crmtools.estormtech.com/bisa", :num_workers => 1}
 RESQUE_GROUPS[:estorm]={:group => "estorm",:queues =>"estormcrm_crm,estormcrm_dms",:rails_root =>  ENV['RAILS_ROOT'] || "/var/sites/admin/estormcrm", :num_workers => 1}
 RESQUE_GROUPS[:tmstest]={:group => "tmstest",:queues =>"tmstest_import",:rails_root =>  ENV['RAILS_ROOT'] || "/var/sites/tms/tmstest", :num_workers => 1}
 RESQUE_GROUPS[:tmslaos]={:group => "tmslaos",:queues =>"tms_import",:rails_root =>  ENV['RAILS_ROOT'] || "/var/sites/tms/tms", :num_workers => 1}
