@@ -1,7 +1,7 @@
 #combined file
 
 RAILS_ENV_GLOBAL = ENV['RAILS_ENV'] || "production"
-RAKE_PATH = "/usr/bin/rake"
+RAKE_PATH = "/home/ubuntu/.rvm/gems/ruby-1.9.3-p448/bin/rake"
 #num_workers = rails_env == 'production' ? 2 : 1
 #num_workers = rails_env == 'production' ? 1 : 1
 RESQUE_GROUPS ={ :indosat => {}}
