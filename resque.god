@@ -1,7 +1,8 @@
 #combined file
 
 RAILS_ENV_GLOBAL = ENV['RAILS_ENV'] || "production"
-RAKE_PATH = "/var/lib/gems/1.8/bin/rake"
+RAKE_PATH = "rake"
+#rvn fix RAKE_PATH = "/var/lib/gems/1.8/bin/rake"
 #num_workers = rails_env == 'production' ? 2 : 1
 #num_workers = rails_env == 'production' ? 1 : 1
 RESQUE_GROUPS ={:crmtools=> {},:estorm => {},  :estorm2 => {}}
