@@ -11,7 +11,7 @@ num_workers.times do |num|
     w.interval = 30.seconds
     w.dir = rails_root
     w.env = {"QUEUE"=>"mimi_status,promotion,acquisition", "RAILS_ENV"=>rails_env}
-    w.start = "/usr/bin/rake  environment resque:work"
+    w.start = "/home/ubuntu/.rvm/gems/ruby-1.9.3-p448/bin/rake  environment resque:work"
 
     w.uid = 'www-data'
     w.gid = 'www-data'
