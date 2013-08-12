@@ -6,7 +6,7 @@ RAKE_PATH = "/home/ubuntu/.rvm/gems/ruby-1.9.3-p448/bin/rake"
 #num_workers = rails_env == 'production' ? 2 : 1
 #num_workers = rails_env == 'production' ? 1 : 1
 RESQUE_GROUPS ={:crmtools=> {},:estorm => {},  :estorm2 => {}}
-RESQUE_GROUPS[:crmtools]={:group => "crmtools",:queues =>"crmtools_mimi_status,crmtools_acquisition,crmtools_promotion,crmtools_automata",:rails_root => ENV['RAILS_ROOT'] || "/var/sites/crmtools.estormtech.com/crmtools", :num_workers => 2}
+RESQUE_GROUPS[:crmtools]={:group => "crmtools",:queues =>"crmtools_mimi_status,crmtools_acquisition,crmtools_promotion,crmtools_automata",:rails_root => ENV['RAILS_ROOT'] || "/var/sites/crmtools.estormtech.com/crmtools", :num_workers => 1}
 # RESQUE_GROUPS[:collin]={:group => "collin",:queues =>"collin_mimi_status,collin_acquisition,collin_promotion",:rails_root => ENV['RAILS_ROOT'] || "/var/sites/crmtools.estormtech.com/collin", :num_workers => 1}
 RESQUE_GROUPS[:estorm2]={:group => "estorm2",:queues =>"estorm2_mimi_status,estorm2_acquisition,estorm2_promotion,estorm2_crmtools,estorm2_automata",:rails_root => ENV['RAILS_ROOT'] || "/var/sites/crmtools.estormtech.com/estorm", :num_workers => 1}
 # RESQUE_GROUPS[:anmum]={:group => "anmum",:queues =>"anmum_mimi_status,anmum_acquisition,anmum_promotion",:rails_root => ENV['RAILS_ROOT'] || "/var/sites/crmtools.estormtech.com/anmum",:num_workers => 1}
